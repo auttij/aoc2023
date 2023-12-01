@@ -8,34 +8,38 @@ from aocHelpers.init import init
 @timer
 @print_result
 def exercise1(arr):
-	a = []
+	s = 0	
 	for line in arr:
 		asd = []
 		for char in line:
-			if char.isnumeric():
+			if char.isdigit():
 				asd.append(char)
-		a.append(int(asd[0] + asd[-1], 10))
-	return sum(a)
+		s += int(asd[0] + asd[-1], 10)
+	return s
 
 @timer
 @print_result
 def exercise2(arr):
-	arr2 = []
-	for j, line in enumerate(arr):
+	nums = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
+	s = 0
+	for line in arr:
 		digits = []
 
 		for i, char in enumerate(line):
 			if char.isdigit():
 				digits.append(char)
-			for d, num in enumerate(['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']):
+
+			for d, num in enumerate(nums):
 				if line[i:].startswith(num):
 					digits.append(str(d))
-		arr2.append(int(digits[0] + digits[-1], 10))
-	return sum(arr2)
+
+		s += int(digits[0] + digits[-1], 10)
+	return s
 
 
 def main(args=None):
 	arr = init(path.dirname(__file__), inputs.read_to_str_arr, args)
+	exercise1(arr)
 	exercise2(arr)
 
 if __name__ == "__main__":
