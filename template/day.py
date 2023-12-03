@@ -7,18 +7,22 @@ from aocHelpers.init import init
 
 @timer
 @print_result
-def exercise1(arr):
+def part1(input):
 	pass
 
 @timer
 @print_result
-def exercise2(arr):
+def part2(input):
 	pass
 
 def main(args=None):
-	arr = init(path.dirname(__file__), inputs.read_to_str, args)
-	exercise1(arr.copy())
-	exercise2(arr.copy())
+	input = init(path.dirname(__file__), inputs.read_to_str, args)
+	if isinstance(input, str):
+		part1(input)
+		part2(input)
+	else:
+		part1(input.copy())
+		part2(input.copy())
 
 if __name__ == "__main__":
 	main(argv[1:])
