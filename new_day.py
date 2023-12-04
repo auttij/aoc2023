@@ -42,8 +42,8 @@ class newDayCreator():
 		if not os.path.exists(self.day):
 			print(f"Creating folder /{self.day}")
 			os.mkdir(self.day)
-		print(f"Copying /template/exercise.py to {self.day}/exercise.py")
-		shutil.copy("template/exercise.py", f"{self.day}/exercise.py")
+		print(f"Copying /template/day.py to {self.day}/day.py")
+		shutil.copy("template/day.py", f"{self.day}/day.py")
 
 	def create_inputs(self):
 		with open(f'{self.day}/input1.txt', 'w') as f:
