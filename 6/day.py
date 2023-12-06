@@ -24,7 +24,7 @@ def part2(input):
 	
 	def bs(lo, hi, clause):
 		while lo <= hi:
-			m = (lo + hi) // 2
+			m = int((lo + hi) // 2)
 			if clause(m):
 				lo = m + 1
 			elif not clause(m):
@@ -42,7 +42,6 @@ def part2(input):
 	lo = bs(0, time/2, search_lo)
 	hi = bs(time/2, time, search_hi)
 	return hi - lo + 1
-
 
 
 def main(args=None):
