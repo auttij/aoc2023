@@ -48,37 +48,27 @@ def part2(input):
 	steps = 0
 
 	stack = [i for i in d.keys() if i[-1] == "A"]
-	fingerprints = []
+	steps_to_z = []
 
 	for key in stack:
 		cur = key
 		steps = 0
-		fp = []
 
-		while (cur, steps % li) not in fp:
+		while True:
 			ins = instructions[steps % li]
-			fp.append((cur, steps % li))
+			if cur[-1] == "Z":
+				steps_to_z.append(steps)
+				break
 			if ins == "L":
 				cur = d[cur][0]
 			else:
 				cur = d[cur][1]
 			steps += 1
-		# print(fp)
-		fingerprints.append(fp)
-		
-	fps_i = []
-	for fp in fingerprints:
-		fp_i = []
-		for i, val in enumerate(fp):	
-			if val[0][-1] == 'Z':
-				fp_i.append(i)
-		fps_i.append(fp_i)
-
 
 	# there was only one in each that had a Z in it
 	out = 1
-	for i in fps_i:
-		out = lcm(out, i[0])
+	for i in steps_to_z:
+		out = lcm(out, i)
 	return out
 
 
