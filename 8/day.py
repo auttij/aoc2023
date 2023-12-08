@@ -8,16 +8,7 @@ from math import lcm
 
 @timer
 @print_result
-def part1(input):
-	d = {}
-
-	instructions = input[0]
-	for line in input[2:]:
-		key, rest = line.split(" = ")
-		left, right =  rest.split(", ")
-		d[key] = (left[-3:], right[:3])
-
-	
+def part1(d, instructions):
 	li = len(instructions)
 	steps = 0
 	path = ["AAA"]
@@ -29,21 +20,11 @@ def part1(input):
 		else:
 			path.append(d[cur][1])
 		steps += 1
-	# print(path)
 	return steps
 
 @timer
 @print_result
-def part2(input):
-	d = {}
-
-	instructions = input[0]
-	for line in input[2:]:
-		key, rest = line.split(" = ")
-		left, right =  rest.split(", ")
-		d[key] = (left[-3:], right[:3])
-
-	
+def part2(d, instructions):
 	li = len(instructions)
 	steps = 0
 
@@ -65,7 +46,6 @@ def part2(input):
 				cur = d[cur][1]
 			steps += 1
 
-	# there was only one in each that had a Z in it
 	out = 1
 	for i in steps_to_z:
 		out = lcm(out, i)
@@ -75,12 +55,16 @@ def part2(input):
 
 def main(args=None):
 	input = init(path.dirname(__file__), inputs.read_to_str_arr, args)
-	if isinstance(input, str):
-		part1(input)
-		part2(input)
-	else:
-		part1(input.copy())
-		part2(input.copy())
+	d = {}
+
+	instructions = input[0]
+	for line in input[2:]:
+		key, rest = line.split(" = ")
+		left, right =  rest.split(", ")
+		d[key] = (left[-3:], right[:3])
+
+	part1(d, instructions)
+	part2(d, instructions)
 
 if __name__ == "__main__":
 	main(argv[1:])
